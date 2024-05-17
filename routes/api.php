@@ -12,5 +12,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
     Route::get('search', [SearchController::class, 'search']);
+    Route::get('search/details', [SearchController::class, 'details']);
 
 });
