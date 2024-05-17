@@ -113,4 +113,32 @@ trait FilterMe
         return $query;
 
     }
+
+    public function scopeFilterJsonColumn(Builder $query, Collection $filters, string $item, string $test)
+    {
+        $filled = $filters->get($item.'_'.$test);
+
+        if ($filled !== '' && $filled !== null) {
+            $query->whereJsonContains(
+                $item.'->'.$test,
+                $filled
+            );
+        }
+
+        return $query;
+    }
+
+
+    public function scopeFilterJsonArrayColumn(Builder $query, Collection $filters, string $item, string $test)
+    {
+        $filled = $filters->get($item.'_'.$test);
+
+        if ($filled !== '' && $filled !== null) {
+            $query->where($item,'ilike',[$test=>'%'.$filled.'%']);
+
+        }
+
+        return $query;
+    }
+
 }

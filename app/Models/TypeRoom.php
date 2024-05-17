@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\FilterMe;
+use App\Models\Traits\SortColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class TypeRoom extends Model
 {
 
-    use FilterMe;
+    use FilterMe, SortColumn;
     protected $fillable = ['title', 'capacity', 'extra_person',
                            'thumbnail_picture', 'pictures', 'bed', 'description', 'amenities', 'price'];
 
@@ -30,6 +31,8 @@ class TypeRoom extends Model
 
         $query->filterStrColumn($filters, 'title');
         $query->filterColumn($filters, 'capacity');
+
+        $query->filterJsonArrayColumn($filters, 'amenities', 'title');
 
         return $query;
     }
