@@ -23,6 +23,7 @@ class StoreTypeRoomRequest extends FormRequest
             'amenities'   => ['nullable', 'array'],
             'amenities.*.title'  => ['required', 'string'],
             'price' => ['required', 'numeric'],
+            'count' => ['required', 'numeric']
         ];
     }
 

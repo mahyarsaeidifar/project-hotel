@@ -9,7 +9,7 @@ class UpdateTypeRoomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string'],
+            'title'    => ['required', 'string'],
             'capacity' => ['required', 'numeric'],
             'extra_person' => ['required', 'boolean'],
             'thumbnail_picture' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,gif', 'max:1024'],
@@ -21,6 +21,7 @@ class UpdateTypeRoomRequest extends FormRequest
             'amenities'   => ['nullable', 'array'],
             'amenities.*.title'  => ['required', 'string'],
             'price' => ['required', 'numeric'],
+            'count' => ['required', 'numeric']
         ];
     }
 
