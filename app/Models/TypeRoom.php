@@ -29,7 +29,6 @@ class TypeRoom extends Model
         $query->filterColumn($filters, 'id');
 
         $query->filterStrColumn($filters, 'title');
-        $query->filterColumn($filters, 'national_number');
         $query->filterColumn($filters, 'capacity');
 
         return $query;
